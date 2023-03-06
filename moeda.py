@@ -6,6 +6,9 @@ import pandas as pd
 import requests
 from datetime import datetime
 import numpy as np
+from PIL import Image, ImageTk
+
+
 
 #API para a requisição de cotação
 requisicao = requests.get('https://economia.awesomeapi.com.br/json/all')
@@ -83,12 +86,19 @@ janela.title('COTAÇÃO DE MOEDAS')
 #ajustar a tela automáticamente
 
 janela.rowconfigure(0, weight=1)
-janela.columnconfigure([0, 2], weight=1)
+janela.columnconfigure([0, 3], weight=1)
 
+#imagem da logo
+
+logo = Image.open('icones/topo.jpg')
+imagem_logo = ImageTk.PhotoImage(logo)
+
+label_logo = ttk.Label(image=imagem_logo)
+label_logo.grid(row=0, column=0, columnspan=3, sticky='NSEW', padx=10, pady=10)
 
 # criação do visual da cotação de uma moedas espesífica
 label_cotacao_moeda = tk.Label(text='Sistema de Cotação de uma Moedas Específica', fg='#FFFFFF', borderwidth=2, relief='solid', bg='#000000')
-label_cotacao_moeda.grid(row=0, column=0, columnspan=3, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
+label_cotacao_moeda.grid(row=0, column=0, columnspan=2, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
 
 label_selecionar_cotacao = tk.Label(text='Selecionar Moeda:', anchor='e')
 label_selecionar_cotacao.grid(row=1, column=0, columnspan=2, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
