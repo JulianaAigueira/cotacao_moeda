@@ -92,7 +92,12 @@ janela.columnconfigure([0, 4], weight=1)
 
 # criação do visual da cotação de uma moedas espesífica
 label_cotacao_moeda = tk.Label(text='Sistema de Cotação de uma Moedas Específica', fg='#FFFFFF', borderwidth=2, relief='solid', bg='#000000')
+label_logo = tk.PhotoImage(file="icones/topo01.png")
+label_cotacao_moeda.config(image=label_logo, compound='right')
 label_cotacao_moeda.grid(row=0, column=0, columnspan=3, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
+
+
+label_cotacao_moeda.config(image=label_logo, compound="right")
 
 label_selecionar_cotacao = tk.Label(text='Selecionar Moeda:', anchor='e')
 label_selecionar_cotacao.grid(row=1, column=0, columnspan=2, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
