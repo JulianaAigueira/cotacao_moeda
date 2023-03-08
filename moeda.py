@@ -7,14 +7,18 @@ import requests
 from datetime import datetime
 import numpy as np
 
-
+#####################################################################
 #API para a requisição de cotação
+#####################################################################
+
 requisicao = requests.get('https://economia.awesomeapi.com.br/json/all')
 dic_moeda = requisicao.json()
 
 lista_moedas = list(dic_moeda.keys())
 
+#####################################################################
 #função requisição de moeda espesífica
+#####################################################################
 def pegar_cotacao():
     moeda = combobox_selecionar_moeda.get()
     data_cotacao = calendario_moeda.get()
@@ -27,14 +31,18 @@ def pegar_cotacao():
     valor_moeda = cotacao[0]['bid']
     label_texto_cotacao['text'] = f'A cotação da {moeda} no dia {data_cotacao} foi de: R$ {valor_moeda}'
 
+###############################################################
 # função selecionar o arquivo que vou colocar as cotações
+###############################################################
 def selecionar_aquivo():
     caminho_arquivo = askopenfilename(title='Selecione o Arquivo de Moeda')
     var_caminho_arquivo.set(caminho_arquivo)
     if caminho_arquivo:
         label_arquivo_selecionado['text'] = f'Arquivo Selecionado: {caminho_arquivo}'
 
+###############################################################
 #função que vai atualizar as cotações
+###############################################################
 def atualizar_cotacao():
     try:
         #ler o dataframe de moedas
@@ -81,23 +89,14 @@ janela = tk.Tk()
 
 janela.title('COTAÇÃO DE MOEDAS')
 
-#ajustar a tela automáticamente
-
-janela.rowconfigure(0, weight=1)
-janela.columnconfigure([0, 4], weight=1)
-
-#imagem da logo
-
-
-
+##############################################################
 # criação do visual da cotação de uma moedas espesífica
+##############################################################
+
 label_cotacao_moeda = tk.Label(text='Sistema de Cotação de uma Moedas Específica', fg='#FFFFFF', borderwidth=2, relief='solid', bg='#000000')
 label_logo = tk.PhotoImage(file="icones/topo01.png")
 label_cotacao_moeda.config(image=label_logo, compound='right')
 label_cotacao_moeda.grid(row=0, column=0, columnspan=3, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
-
-
-label_cotacao_moeda.config(image=label_logo, compound="right")
 
 label_selecionar_cotacao = tk.Label(text='Selecionar Moeda:', anchor='e')
 label_selecionar_cotacao.grid(row=1, column=0, columnspan=2, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
@@ -118,8 +117,10 @@ botao_pegar_cotacao = tk.Button(text='PEGAR COTAÇÃO', command=pegar_cotacao)
 botao_pegar_cotacao.grid(row=3, column=2, padx=10, pady=10, sticky='NSWE')
 
 
-
+######################################################################
 #criação do visual da cotação de várias moedas
+######################################################################
+
 label_muiltipa_moeda = tk.Label(text='Sistema de Cotação de Multiplas Moedas', fg='#FFFFFF', borderwidth=2, relief='solid', bg='#000000')
 label_muiltipa_moeda.grid(row=4, column=0, columnspan=3, sticky='NSEW', padx=10, pady=10)#NSEW - norte, sul, leste, oeste
 
